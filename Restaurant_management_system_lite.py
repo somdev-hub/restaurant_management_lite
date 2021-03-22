@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import ttk
 import datetime as calender
 from tkinter import messagebox
+import matplotlib.pyplot as plt
 
 root=Tk()
 root.config(bg='wheat1')
@@ -23,6 +24,7 @@ grand_total=0
 
 dishes = ["French Fries", "Burger", "Pizza", "Coffee", "Sandwich", "Noodles", "Rice", "Soup", "Curry", "Hot Dog"]
 
+quantity=[55,12,5,20,4,7,10,25,13,12]
 
 def text_insert():
     """This method inserts the default data into the bill area."""
@@ -114,19 +116,29 @@ def value_total():
                           
                           '=====================================')
 
+def plot():
+	plt.pie(quantity,labels=dishes)
+	plt.show()
+	
+style=ttk.Style()
+style.configure("W.TButton",font=('calibri',8), background="black",borderwidth=4,relief="flat")
 
 main_label=Label(root,text='Restaurant Management System',font=('ariel',10,'bold'),bd=8,bg='light gray',relief=GROOVE)
 main_label.pack(side=TOP,fill=X)
 
 frame1=Frame(root,bd=5,relief=GROOVE)
-frame1.place(x=40,y=90,width=650,height=750)
+frame1.place(x=40,y=90,width=650,height=830)
 
 
 frame2=Frame(root,bd=5,relief=GROOVE)
-frame2.place(x=40,y=900,width=650,height=450)
+frame2.place(x=40,y=930,width=650,height=450)
 
 frame3=Frame(frame1,bd=5,relief=GROOVE)
 frame3.place(x=20,y=400,width=600,height=310)
+
+
+frame4=Frame(root,bd=5,relief=GROOVE)
+frame4.place(x=65,y=820,width=600,height=70)
 
 label1=Label(frame1,text="Bill number")
 label1.grid(row=0,column=0,sticky=W)
@@ -194,6 +206,14 @@ button6.grid(row=1,column=2,padx=4,pady=2)
 button7=Button(frame3,text="Exit",height=1,bd=3,width=28,bg='bisque2',command=all_exit)
 button7.grid(row=2,column=0,padx=4,pady=2,columnspan=3)
 
+button8=ttk.Button(frame4,text="Graph",style="W.TButton",command=plot)
+button8.grid(row=0,column=0,padx=4,pady=1)
+
+button9=ttk.Button(frame4,text="Graph",style="W.TButton",command=plot)
+button9.grid(row=0,column=1,padx=4,pady=1)
+
+button10=ttk.Button(frame4,text="Graph",style="W.TButton",command=plot)
+button10.grid(row=0,column=2,padx=4,pady=1)
 
 text1=Text(frame2,bg='white')
 text1.pack(fill=BOTH, expand=TRUE)
